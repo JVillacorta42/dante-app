@@ -2751,7 +2751,13 @@
           "title": "GUARIDA DE LA GORGONA",
           "image": "ira/image6.png",
           "content": "A medida que os aproximáis a la guarida de la Gorgona, el ambiente se impregna de una palpable sensación de terror. El pantano deja paso a un terreno rocoso donde, en el horizonte, se alzan figuras petrificadas: las víctimas de Medusa.\n—¿De verdad tenemos que entrar ahí? —pregunta el Mercenario, espada en mano y con el corazón acelerado.\n—Si queremos la ayuda de Flegias, me temo que sí —susurra Dante—. Recordad: la Gorgona es tan astuta como peligrosa. Haced lo mismo que Perseo y no la miréis jamás directamente.\nRespiráis hondo y penetráis en la guarida.\nLa criatura emerge pronto de entre las sombras, envuelta en un aura de terror. De inmediato apartáis la vista mientras intentáis controlar vuestra respiración. ¿Seríais capaces siquiera de notar el instante en que comenzáis a convertiros en piedra?\nEl combate permanece tenso y sabéis que no podéis vacilar ni un solo instante hasta que, gracias a un lanzamiento afortunado, una de las dagas de la Artista alcanza su objetivo.\nLa Gorgona lanza un chillido desgarrador al sentir cómo su siniestra majestuosidad se debilita mientras la sangre venenosa brota de su pecho, proporcionando al Mercenario la distracción necesaria para cercenarle la cabeza con un golpe limpio y poderoso. Un auténtico verdugo.\nReclamando como botín tanto los restos de la embarcación de Flegias como la cabeza de la criatura, abandonáis el lugar sin poder evitar una pregunta: ¿acaso los demonios también están prisioneros, igual que las Almas Condenadas?\n—Bienvenidos a mi dominio —susurra ella con una voz sibilante que resuena como un réquiem funerario—, donde la eternidad será vuestro castigo.\nSi disponéis de la expansión Tríada del Abismo, podéis pasar a la Fase de Confrontación contra Medusa descrita allí. En caso contrario, continuad con la siguiente instrucción.\nLa Caravana supera una Prueba de Voluntad de Dificultad 15.\nÉXITO\nCon los ojos cubiertos, os guiáis por el siseo de las serpientes y por las indicaciones del Poeta, inmune al poder del monstruo.\nLa Caravana obtiene la carta de Tesoro Cabeza de la Gorgona.\nEl Campeón que haya obtenido más Impactos recibe 1 ficha de Voluntad.\nLa Caravana baraja las cartas de Descubrimiento numeradas del 19 al 23 que aún no haya obtenido y roba una al azar (son cartas de Recurso). Después, si la carta de Camino 28 aún no se ha colocado sobre la Región #059 – Atrio de la Estigia, colócala allí. En cualquier caso, continúa con la siguiente instrucción.\nLanza un dado:\n·\tSi el resultado es una Pifia, las Furias os encuentran. Como equipo, podéis descartar una carta de Artefacto para distraerlas. En caso contrario, pasa a la Resolución #059-G.\n·\tSi el resultado es un Impacto o un Impacto Doble, la Caravana regresa a la Región #059 – Atrio de la Estigia y, a continuación, la Inspecciona.\nFRACASO\nA pesar de todos vuestros esfuerzos por mirar a cualquier parte salvo al monstruo, la tentación resulta demasiado fuerte; basta un único instante de debilidad y curiosidad para condenaros.\nLa Gorgona sonríe cruelmente mientras contempla cómo vuestros cuerpos comienzan a transformarse lentamente en piedra. Primero un dedo. Después una mano o un pie. Más tarde o más temprano acabaréis formando parte de la decoración, igual que aquel desafortunado escuadrón de caballeros.\n—¡Vil víbora, desaparece! —Dante alza la mano y una intensa luz ciega tanto al monstruo como a vosotros, ralentizando el hechizo hasta invertirlo por completo.\nEl esfuerzo pasa factura al Poeta, pero aún no ha terminado.\n—¡Amigos, seguidme! ¡Yo os sacaré de aquí!\nPrivada de visión, la criatura no puede hacer otra cosa que maldecir y protestar con su voz siseante mientras emprendéis la retirada.\nEl Campeón que haya obtenido menos Impactos sufre 1 Herida (ajusta su Vigor nuevamente a 6).\nLanza un dado:\n·\tSi el resultado es una Pifia, las Furias os encuentran. Como equipo, podéis descartar una carta de Artefacto para distraerlas. En caso contrario, pasa a la Resolución #059-G.\n·\tSi el resultado es un Impacto o un Impacto Doble, la Caravana regresa a la Región #059 – Atrio de la Estigia y, a continuación, la Inspecciona.",
-          "choices": []
+          "choices": [
+            {
+              "label": "061-X",
+              "text": "Enfrentarse a Medusa",
+              "target": "battle-gorgona"
+            }
+          ]
         },
         {
           "id": "062",
@@ -2927,7 +2933,34 @@
         "rules_note": "",
         "rules_note_image": "ira/image13.png",
         "scenes": []
-      }
+      },
+      "extraBattles": [
+        {
+          "slug": "gorgona",
+          "boss_name": "Medusa, La Gorgona",
+          "boss_image": "ira/image14.png",
+          "rules_image": "ira/image15.png",
+          "intro": "«¡Cerrad los ojos!» La voz imperiosa del Poeta es seguida por una risa grave y resonante.\n\n«Impresionante, Dante. ¿Cómo puedes contemplar mi rostro sin convertirte en una de mis estatuas?» La criatura se desliza por la cueva, rodeándoos mientras busca el momento oportuno para abalanzarse sobre vosotros.\n\n«Tú, Medusa, no eres más que una mujer agraviada… castigada por los dioses. No tienes poder sobre mí.»\n\nLa Gorgona lanza un grito, un chillido agudo donde el dolor y la furia se mezclan con el siseo de las serpientes que se retuercen sobre su cabeza.\n\n«¡Ahórrate tu compasión! Si el encanto no basta, aún puedo ocuparme de vosotros por las malas…»\n\nEntonces, el estruendo repentino de algo pesado al caer resuena entre vosotros. Con los ojos cerrados, dudáis sobre qué hacer, hasta que el grito ahogado de Dante rompe el silencio…\n\nMedusa aparece amenazadora.\n\n«Vamos… abrid los ojos…» se burla mientras el Poeta forcejea atrapado entre sus manos, incapaz de hablar. «Solo una mirada… ¿O vais a dejar que el bocazas sufra por vuestra cobardía?»\n\nEl dilema de ayudarlo o no consume vuestros pensamientos y os deja paralizados, hasta que un siseo de frustración, seguido del ruido de algo golpeando torpemente el suelo, pone fin al enfrentamiento entre el hombre y el monstruo.\n\n«¡Abrid los ojos, ahora os da la espalda!» El Poeta, pálido, se arrastra hasta ponerse a salvo tras liberarse de la mano que lo sujetaba.\n\nAhora os corresponde a vosotros terminar lo que él ha comenzado.",
+          "scenes": [
+            {
+              "rules_image": "ira/image15.png",
+              "paragraphs": [
+                "Medusa está enfurecida y ansía venganza. En primer lugar, registra el estado actual de la partida retirando del tablero todas las cartas de Región, junto con cualquier carta de Camino que permanezca sobre ellas, así como la Peana de la Caravana. Después, dale la vuelta al tablero por el lado de Confrontación.",
+                "A continuación, realiza la Preparación del Escenario de Batalla.",
+                "Toma la carta de Estado del Malhechor de Medusa y colócala con la cara «A» hacia arriba.",
+                "Baraja las cartas de Acción de la Cabeza y colócalas en la primera ranura de la Bandeja de Confrontación con la cara de «Acción» hacia arriba.",
+                "Baraja las cartas de Acción del Cuerpo y colócalas en la segunda ranura.",
+                "Baraja las cartas de Evento de Confrontación — Medusa y colócalas en la tercera ranura, boca abajo.",
+                "Baraja las fichas de Fiereza de los Campeones y colócalas aleatoriamente en el Marcador de Fiereza.",
+                "Toma la carta de Objetivo de Confrontación: Derrota a Medusa.",
+                "La Confrontación termina cuando la Caravana logra cumplir uno de los Objetivos (Éxito) o cuando uno de los Campeones es derrotado (Fracaso)."
+              ]
+            }
+          ],
+          "outro": "Contempláis a la Gorgona, ahora sin vida. Las serpientes que antes se retorcían con violencia comienzan a relajarse, como si ellas también hubieran sido liberadas de una maldición.\n\nSu rostro, despojado del encantamiento petrificador, resulta sorprendentemente sereno. Su expresión parece casi humana y os recuerda que, en otro tiempo, fue una joven hermosa e inocente.\n\n«Detrás del monstruo había una mujer —pone voz a vuestros pensamientos el Poeta—. Una víctima de la vanidad de los dioses, transformada en un símbolo del horror.»\n\nLo observáis, sintiendo su tristeza más de lo que la comprendéis. El Mercenario sostiene la cabeza de Medusa con respeto, no como un trofeo, sino como un amargo recordatorio de las injusticias del mundo.\n\nReclamando los restos de la embarcación de Flegias, abandonáis el lugar en silencio, preguntándoos: ¿son los demonios, al igual que las almas Condenadas, víctimas del propio Infierno?",
+          "outro_instructions": "GUARDA todas las cartas de Acción y de Evento de Medusa.\n\nCada Campeón recupera todas sus cartas de Maniobra, rebaraja su mazo, ajusta su Vigor a 3, retira todas las cartas de Pecado, y recibe RESTAURAR 1 y ATURDIR 3.\n\nDale la vuelta al tablero por el lado de Exploración.\n\nLa Caravana obtiene el Tesoro Piel de Serpiente.\n\nColoca las cartas de Región: n.º 056 (A1), 057 (B1), 059 (B2), 060 (A3), 061 (B3), 062 (C3) y 066 (B6).\n\nVuelve a colocar sobre la Región n.º 059 las cartas de Camino n.º 18 a 22 aún no recogidas.\n\nBaraja las cartas de Descubrimiento n.º 24 a 28 aún no obtenidas y roba una al azar. Si la carta de Camino n.º 23 aún no está en la Región n.º 059, añádela.\n\nPor último, lanza un dado: si el resultado es una Pifia, las Furias os encuentran y debéis dirigiros a la Resolución n.º 059-G. En caso contrario, avanza la Caravana hasta la Región n.º 059 — Atrio de la Estigia e Inspecciónala."
+        }
+      ]
     },
     {
       "id": "VI",
@@ -3491,6 +3524,11 @@
               "label": "080-B",
               "text": "Apelar a la humanidad de la criatura",
               "target": "080-B"
+            },
+            {
+              "label": "080-X",
+              "text": "Iniciar la Confrontación con el Minotauro",
+              "target": "battle-minotauro"
             }
           ]
         },
@@ -3982,7 +4020,34 @@
             "content": "—Basta… —retrocede el villano tras recibir un último golpe en la cabeza, con la voz quebrándose por el esfuerzo—. ¡En nombre del Altísimo, os lo suplico, dejadme en paz! ¡Pedid el precio que queráis, pero no puedo soportarlo más!\nIntrigados, mantenéis la guardia alta. Sin embargo, reducido ya a poco más del tamaño de un hombre, el monstruo realmente ha alcanzado su límite.\nGerión está derrotado, apaleado como ninguna otra criatura a la que os hayáis enfrentado, pero su ferocidad os hace imaginar el aspecto que tendría en todo su esplendor. El enorme surco de cuatro garras abierto junto al borde del abismo, desgarrando la roca como un arado tirado por bueyes, es prueba de que una sola de sus manos fue en otro tiempo tan grande como el propio Mercenario. Y eso sin contar el resto de su cuerpo y sus alas…\n—Gerión, te proponemos un trato: llévanos al otro lado como hiciste antes con los caballeros… —la Artista es la primera en bajar las armas y dar un paso al frente—. Te prometo que seremos los últimos, y nuestra causa es justa. Cuando sanes, recordarás este momento.\nEl demonio gruñe mientras su pecho continúa jadeando, pero el largo y triste resoplido que finalmente exhala deja claro que acepta.\n—No puedo hacerlo… Estoy demasiado débil, demasiado cansado…\nNo miente, aunque haya accedido a transportaros.\n—Me temo que no tenemos otra elección. Nosotros confiamos en ti, igual que te pedimos que confíes en nosotros. Todos estamos en el mismo bando y debemos llegar juntos al Abismo.\nGerión puede ser muchas cosas, pero aquí es el guardián, y el deber siempre termina imponiéndose. No puede rechazar la sincera súplica de la mujer.\n—Así será, mortales. Recoged vuestras pertenencias, aseguraos el equipo y preparaos. Llevaré a uno sobre mi espalda, entre las alas; a otro enroscado alrededor de mi cola; y a los otros dos, uno bajo cada brazo —explica el plan—. Permaneced inmóviles, porque este viaje no será sencillo…\n—Que Dios se apiade de nosotros… —susurra la Devota mientras, torpemente, os adentráis en la oscuridad.\nCada Campeón mejora su mazo de Maniobras, sustituyendo 1 carta de Nivel 1 por 1 carta de Nivel 4.\nAntes de pasar al siguiente Capítulo, aseguraos de completar los siguientes procedimientos para guardar la partida:\nDevolved todas las fichas que tengan los Campeones a la Bandeja de Fichas.\nColocad en la Caja de la Caravana la carta de Objetivo de Confrontación completada y las cartas de Descubrimiento obtenidas.\nReconstruid los mazos de Arcanos, Heridas, Pecados y Hallazgos, devolviendo a ellos todas las cartas que se encuentren en los mazos de Acción del Malhechor o en los tableros o manos de los Campeones.\nDesmontad la preparación de esta Confrontación y guardad todas las cartas de Objetivo de Confrontación que no se hayan completado, la carta de Estado del Malhechor y sus mazos de Acción.\nSi vais a finalizar la sesión de juego, guardad todas las cartas de Maniobra y el Equipo que porten los Campeones en sus respectivas Cajas de Campeón. Ese será el estado inicial de vuestros Campeones para el siguiente Círculo. En caso contrario, si vais a seguir jugando, preparad la Caravana igual que al comienzo de cualquier Círculo.\nLas instrucciones terminan aquí.\nYa podéis guardar los materiales o comenzar una nueva sesión."
           }
         ]
-      }
+      },
+      "extraBattles": [
+        {
+          "slug": "minotauro",
+          "boss_name": "Minotauro, La Bestia Perdida",
+          "boss_image": "violencia/image19.png",
+          "rules_image": "violencia/image20.png",
+          "intro": "El Minotauro se yergue, inmenso, mientras la hostilidad en el ambiente se intensifica. La violencia es su hábitat natural; la carne humana, su alimento; y los laberintos subterráneos del Palacio de Cnosos, su prisión.\n\n«¿Me tomáis por un salvaje? —La furia en sus ojos es intensa, pero la voz áspera y cortante que surge de su hocico de toro resulta aún más inquietante—. Veo juicio en vuestras miradas. Bestia, monstruo… Minotauro. Pero mi nombre es Asterión. ¿Habéis venido para repetir las hazañas de Teseo?»\n\n«No. Solo queremos hablar…» El Mercenario queda desconcertado por la aguda inteligencia del centinela. A pesar de su tono sereno, el Condotiero mantiene una firme mano sobre la empuñadura de su espada.\n\nAsterión resopla, con los ojos moviéndose de vuestras armas a vuestros rostros tensos.\n\n«¿Hablar? —ríe con amargura—. Ni siquiera mi propia madre habló conmigo. Se avergonzaba de mi… fealdad.»\n\nBaja la cabeza mientras sus pezuñas arañan el suelo y la frustración comienza a apoderarse de él.\n\n«Veo compasión en vuestros ojos… —su voz vacila—. No necesito vuestra… lástima…»\n\nSu respiración se acelera, el pecho sube y baja con violencia, y poco a poco vuelve a perder la razón.\n\n«¡A QUIÉN COMPADECÉIS!» —ruge, estallando en un acceso de furia absoluta.\n\nEntonces, en un solo movimiento, todo control desaparece y la transformación se desencadena. Los huesos crujen y los músculos se expanden con un sonido espantoso, llenando el aire con la promesa de una violencia inminente.\n\nAsterión ya no existe. Solo queda el Minotauro.",
+          "scenes": [
+            {
+              "rules_image": "violencia/image20.png",
+              "paragraphs": [
+                "El Minotauro ha sucumbido a la locura y no os permitirá pasar sin luchar. En primer lugar, registra el estado actual de la partida retirando del tablero todas las cartas de Región y la Peana de la Caravana. Después, dale la vuelta al tablero por el lado de Confrontación.",
+                "A continuación, realiza la Preparación del Escenario de Batalla.",
+                "Toma la carta de Estado del Malhechor del Minotauro con la cara «A» hacia arriba.",
+                "Baraja las cartas de Acción de los Brazos y colócalas en la primera ranura de la Bandeja de Confrontación.",
+                "Baraja las cartas de Acción del Cuerpo y colócalas en la segunda ranura.",
+                "Baraja las cartas de Evento de Confrontación — Minotauro y colócalas en la tercera ranura, boca abajo.",
+                "Baraja las fichas de Fiereza de los Campeones en el Marcador de Fiereza.",
+                "Toma la carta de Objetivo de Confrontación: Derrota al Minotauro.",
+                "La Confrontación termina cuando la Caravana logra cumplir uno de los Objetivos (Éxito) o cuando uno de los Campeones es derrotado (Fracaso)."
+              ]
+            }
+          ],
+          "outro": "Polvo y escombros. Sangre y lágrimas. Eso es todo lo que queda.\n\nLe habéis hablado a Asterión en el único lenguaje que comprendía: la violencia. De una forma tan cruel como inevitable, era precisamente aquello que anhelaba. Tendido sobre la pendiente, sus ojos llenos de lágrimas contrastan con su hocico, ahora cubierto de polvo.\n\nPoco a poco, su cuerpo se relaja y un largo suspiro escapa de su boca entreabierta. Observáis cómo la expresión de furia se desvanece, dando paso a una serenidad inesperada. Después os alejáis, llevando con vosotros el recuerdo de aquel singular encuentro y el eco de lo que se perdió —y, por un instante, volvió a recuperarse— tanto en el hombre como en la bestia.\n\nNi siquiera Teseo pudo conceder a Asterión la paz que vosotros acabáis de otorgarle.",
+          "outro_instructions": "GUARDA todas las cartas de Acción y de Evento del Minotauro.\n\nCada Campeón recupera todas sus cartas de Maniobra, rebaraja su mazo, ajusta su Vigor a 3, retira todas las cartas de Pecado, y recibe RESTAURAR 1 y ATURDIR 3.\n\nDale la vuelta al tablero por el lado de Exploración.\n\nLa Caravana obtiene el Tesoro Melena del Minotauro.\n\nColoca la carta de Región n.º 080 — La Pendiente (B1) y la n.º 081 — Orillas del Flegetonte (B2).\n\nColoca la Caravana en la Región n.º 081 — Orillas del Flegetonte e Inspecciónala."
+        }
+      ]
     },
     {
       "id": "VIII",
