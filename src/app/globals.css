@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0d0a08;
+  --text-primary: #e8d5b0;
+  --accent-ember: #8b1a1a;
+  --accent-gold: #c9a84c;
+  --card-bg: #1a1410;
+  --card-border: #2d1f0f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Georgia, 'Times New Roman', serif;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1410;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a2010;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-ember);
+}
+
+/* Paragraph link styling */
+.paragraph-link {
+  color: var(--accent-gold);
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.paragraph-link:hover {
+  color: #e8c060;
+  text-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
+}
+
+/* Ember glow animation */
+@keyframes ember-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.ember-pulse {
+  animation: ember-pulse 3s ease-in-out infinite;
+}
+
+/* Fire border effect */
+@keyframes fire-flicker {
+  0%, 100% { box-shadow: 0 0 8px rgba(139, 26, 26, 0.4); }
+  33% { box-shadow: 0 0 16px rgba(200, 50, 20, 0.6); }
+  66% { box-shadow: 0 0 12px rgba(139, 26, 26, 0.5); }
+}
+
+.fire-border {
+  animation: fire-flicker 4s ease-in-out infinite;
+}
+
+/* Hide ambient player in battle mode */
+body.battle-mode .ambient-player {
+  display: none !important;
+}
