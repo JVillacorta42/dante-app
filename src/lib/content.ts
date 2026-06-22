@@ -33,12 +33,24 @@ export interface Battle {
   scenes: BattleScene[]
 }
 
+export interface ExtraBattle {
+  slug: string
+  boss_name: string
+  boss_image?: string | null
+  rules_image?: string | null
+  intro: string
+  scenes: { rules_image?: string; paragraphs: string[] }[]
+  outro: string
+  outro_instructions: string
+}
+
 export interface Circle {
   id: string
   name: string
   slug: string
   paragraphs: Paragraph[]
   battle?: Battle
+  extraBattles?: ExtraBattle[]
 }
 
 export interface Content {
@@ -83,6 +95,11 @@ export function getNextParagraph(circleSlug: string, currentId: string): Paragra
   const idx = circle.paragraphs.findIndex((p) => p.id === currentId)
   if (idx < 0 || idx >= circle.paragraphs.length - 1) return undefined
   return circle.paragraphs[idx + 1]
+}
+
+export function getExtraBattle(circleSlug: string, bossSlug: string): ExtraBattle | undefined {
+  const circle = getCircle(circleSlug)
+  return circle?.extraBattles?.find((b) => b.slug === bossSlug)
 }
 
 export function getPrevParagraph(circleSlug: string, currentId: string): Paragraph | undefined {

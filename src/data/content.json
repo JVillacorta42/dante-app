@@ -78,6 +78,11 @@
               "label": "004-C",
               "text": "Amenazar al Barquero",
               "target": "004-C"
+            },
+            {
+              "label": "004-X",
+              "text": "Enfrentarse a Caronte",
+              "target": "battle-caronte"
             }
           ]
         },
@@ -433,7 +438,32 @@
           }
         ],
         "rules_note_image": "limbo/image17.png"
-      }
+      },
+      "extraBattles": [
+        {
+          "slug": "caronte",
+          "boss_name": "Caronte, El Barquero de los Muertos",
+          "boss_image": "limbo/image19.png",
+          "rules_image": "limbo/image20.png",
+          "intro": "Caronte permanece inmóvil, con los ojos ardiendo en su rostro cadavérico. Hasta ahora solo lo habíais visto como el barquero, vestido con harapos y apoyado sobre su remo, casi como un mendigo.\n\nAunque permanece encorvado, sigue alzándose por encima de todos vosotros. El remo, más grueso que el brazo del Mercenario y más pesado que el hierro, lo empuña con una facilidad inquietante. Una fuerza que parece desafiar al propio río.\n\n«No imparto castigo a los recién llegados. Si eso es lo que deseáis, esperaréis por toda la eternidad en estas orillas del olvido. Yo solo transporto a quienes pagan el tributo.»\n\nMantiene la mirada fija en vosotros.\n\n«¡No lo entiendes, anciano! ¡Nos llevarás… gratis!» —La Devota avanza como si el Infierno le perteneciera, pero el viejo demonio permanece impasible—. «No eres más que el barquero. ¿Has olvidado cuál es tu lugar?»\n\n«¡JUJUJ…! —La risa ronca del barquero resuena como un trueno, haciendo vibrar hasta vuestros propios huesos—. ¿Es eso una amenaza? ¿O tal vez sois vosotros quienes habéis olvidado cuál es vuestro lugar?»\n\nOs observa con una mezcla de desprecio y diversión.\n\n«¿Creéis que podéis derrotarme? ¿A mí, cuya fuerza solo fue superada por Hércules y cuya astucia únicamente igualó Orfeo?»\n\nSu cuerpo putrefacto endereza los hombros, los huesos crujen, y alza el remo empuñándolo como un arma mortal. Solo entonces contempláis al coloso al que habéis desafiado: el hijo de la noche y de la oscuridad, una existencia anterior incluso a Zeus.\n\n«Cruzaréis el río… muertos.»",
+          "scenes": [
+            {
+              "rules_image": "limbo/image20.png",
+              "paragraphs": [
+                "Caronte acepta el desafío y está preparado para combatir. En primer lugar, registra el estado actual de la partida retirando todas las cartas de Región y la Peana de la Caravana del tablero. Después, dale la vuelta al tablero por el lado de Confrontación.",
+                "A continuación, realiza la Preparación del Escenario de Batalla.",
+                "Toma la carta de Estado del Malhechor de Caronte y colócala en el espacio correspondiente con la cara «A» hacia arriba.",
+                "Baraja las cartas de Acción de Caronte y colócalas formando un mazo en la primera ranura de la Bandeja de Confrontación con la cara de «Acción» hacia arriba.",
+                "Baraja las cartas de Evento de Confrontación – Caronte I y colócalas formando un mazo en la segunda ranura de la Bandeja de Confrontación, boca abajo.",
+                "La primera Ronda comienza con el Turno de la Caravana, empezando por el Paso de Limpieza.",
+                "La Confrontación termina cuando la Caravana logra cumplir uno de los Objetivos de Confrontación (Éxito) o cuando uno de los Campeones es derrotado (Fracaso)."
+              ]
+            }
+          ],
+          "outro": "Un chasquido seco resuena cuando el remo de Caronte se parte, y el propio barquero cae de rodillas en las orillas del Aqueronte. Sus ojos, antes envueltos en llamas, están ahora vacíos, consumidos por la soledad y el cansancio. Ya no es ni barquero ni entidad divina, sino tan solo una sombra de lo que fue, un hombre quebrado.\n\nEl Poeta posa una mano sobre su huesudo hombro derrotado.\n\n«Hijo de Nix, pese a las duras palabras, la Doncella no se equivocaba. Somos los Campeones de la Cristiandad y, del mismo modo que hiciste conmigo en el pasado, ahora debes llevarnos al otro lado.»\n\nEl villano deja escapar un gruñido frustrado.\n\n«Maldito sea este mundo… donde incluso los vivos me dan órdenes como si fueran los señores del Hades.»\n\nRegresa arrastrando los pies hacia la barcaza y hace un gesto despectivo con la mano.\n\n«Subid todos a bordo. La travesía es breve, pero… siempre hay más almas esperando.»\n\nOs acomodáis como podéis en el pequeño transbordador y emprendéis el viaje hacia la otra orilla. Tal y como había prometido, el trayecto es corto y no pasa mucho tiempo antes de que el barquero os ordene desembarcar con su habitual «amabilidad».",
+          "outro_instructions": "GUARDA todas las cartas de Acción y de Evento de Caronte.\n\nCada Campeón recupera todas sus cartas de Maniobra, vuelve a barajar su mazo, ajusta su Vigor a 3, retira todas las cartas de Pecado de su Tablero y de su Mano, y recibe RESTAURAR 1 y ATURDIR 3.\n\nDale la vuelta al tablero por el lado de Exploración.\n\nLa Caravana obtiene el Tesoro Remo de Caronte.\n\nColoca las cartas de Región n.º 001 – Bosque Oscuro en la posición C1, n.º 002 – Colina de la Virtud en la posición B1, n.º 003 – Puertas del Infierno en la posición B2, n.º 004 – Orillas del Aqueronte en la posición B3 y n.º 007 – Puertas del Castillo en la posición B4.\n\nColoca la Caravana en la Región n.º 007 – Puertas del Castillo y, a continuación, Inspecciónala."
+        }
+      ]
     },
     {
       "id": "II",

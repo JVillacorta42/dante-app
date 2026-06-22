@@ -252,13 +252,18 @@ export default function ParagraphPage({ params }: PageProps) {
             {/* Choices */}
             <div className="space-y-3">
               {paragraph.choices.map((choice) => {
-                const targetFound = findParagraph(choice.target)
+                const isBattle = choice.target.startsWith('battle-')
+                const battleSlug = isBattle ? choice.target.replace('battle-', '') : null
+                const targetFound = !isBattle ? findParagraph(choice.target) : null
                 const targetCircleSlug = targetFound ? targetFound.circle.slug : circleSlug
+                const href = isBattle
+                  ? `/${circleSlug}/battle/${battleSlug}`
+                  : `/${targetCircleSlug}/${choice.target}`
 
                 return (
                   <Link
                     key={choice.label}
-                    href={`/${targetCircleSlug}/${choice.target}`}
+                    href={href}
                     className="flex items-start gap-4 p-4 rounded-lg group transition-all duration-300"
                     style={{
                       backgroundColor: '#1a1410',
