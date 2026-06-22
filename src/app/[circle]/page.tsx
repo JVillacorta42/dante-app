@@ -119,7 +119,7 @@ export default function CirclePage({ params }: PageProps) {
       {/* Back navigation */}
       <div className="px-4 py-4" style={{ borderBottom: '1px solid #1a1410' }}>
         <Link
-          href="/"
+          href="/select"
           className="text-sm hover:underline transition-colors"
           style={{ color: '#9e8a6a' }}
         >
