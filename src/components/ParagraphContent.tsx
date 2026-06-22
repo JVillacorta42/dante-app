@@ -96,11 +96,14 @@ export default function ParagraphContent({ content, circleSlug }: ParagraphConte
 
         const isFirst = pIdx === 0
         const firstPart = isFirst && parts.length > 0 ? parts[0] : null
-        const dropCapLetter = isFirst && firstPart?.type === 'text' && firstPart.content.length > 0
-          ? firstPart.content[0]
+        // Find first actual letter, skipping leading punctuation («, ", ¡, ¿, etc.)
+        const firstLetterMatch = isFirst && firstPart?.type === 'text'
+          ? firstPart.content.match(/^([^a-záéíóúüñA-ZÁÉÍÓÚÜÑ]*)([a-záéíóúüñA-ZÁÉÍÓÚÜÑ])/)
           : null
+        const dropCapPrefix = firstLetterMatch ? firstLetterMatch[1] : null
+        const dropCapLetter = firstLetterMatch ? firstLetterMatch[2] : null
         const firstPartRest = dropCapLetter !== null && firstPart
-          ? { ...firstPart, content: firstPart.content.slice(1) }
+          ? { ...firstPart, content: firstPart.content.slice((dropCapPrefix?.length ?? 0) + 1) }
           : null
 
         return (
@@ -109,6 +112,7 @@ export default function ParagraphContent({ content, circleSlug }: ParagraphConte
             className="leading-relaxed"
             style={{ color: '#e8d5b0', fontSize: '1.05rem', lineHeight: '1.75' }}
           >
+            {dropCapPrefix && <span>{dropCapPrefix}</span>}
             {dropCapLetter && (
               <span
                 style={{
