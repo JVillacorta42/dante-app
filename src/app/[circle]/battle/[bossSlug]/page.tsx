@@ -1,9 +1,10 @@
 'use client'
 
-import { use, useEffect } from 'react'
+import { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { getCircle, getExtraBattle } from '@/lib/content'
 import BattleMusicPlayer from '@/components/BattleMusicPlayer'
+import { useAudio } from '@/lib/AudioContext'
 
 interface PageProps {
   params: Promise<{ circle: string; bossSlug: string }>
@@ -13,6 +14,21 @@ export default function ExtraBattlePage({ params }: PageProps) {
   const { circle: circleSlug, bossSlug } = use(params)
   const circle = getCircle(circleSlug)
   const battle = getExtraBattle(circleSlug, bossSlug)
+  const [narrating, setNarrating] = useState(false)
+  const narratorRef = useRef<HTMLAudioElement | null>(null)
+  const { duckRef } = useAudio()
+
+  function toggleNarration() {
+    const audio = narratorRef.current
+    if (!audio) return
+    if (narrating) {
+      audio.pause(); audio.currentTime = 0; setNarrating(false)
+      duckRef.current?.(0.35, 1200)
+    } else {
+      audio.play().then(() => { setNarrating(true); duckRef.current?.(0.07, 1200) }).catch(() => {})
+    }
+  }
+  function handleNarrationEnd() { setNarrating(false); duckRef.current?.(0.35, 1200) }
 
   useEffect(() => {
     document.body.classList.add('battle-mode')
@@ -89,6 +105,26 @@ export default function ExtraBattlePage({ params }: PageProps) {
         {/* Intro narrative */}
         {battle.intro && (
           <div className="max-w-2xl mx-auto px-4 py-10">
+            <audio
+              ref={narratorRef}
+              src={`https://github.com/JVillacorta42/dante-app/releases/download/1.0/batalla_${bossSlug}.mp3`}
+              onEnded={handleNarrationEnd}
+            />
+            <div className="flex justify-center mb-8">
+              <button
+                onClick={toggleNarration}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105"
+                style={{
+                  backgroundColor: narrating ? '#3a0808' : 'transparent',
+                  border: `1px solid ${narrating ? '#8b1a1a' : '#3a1a0a'}`,
+                  color: narrating ? '#c97070' : '#9e8a6a',
+                  letterSpacing: '0.2em',
+                  boxShadow: narrating ? '0 0 16px #8b1a1a44' : 'none',
+                }}
+              >
+                {narrating ? '■ Detener narración' : '▶ Escuchar narración'}
+              </button>
+            </div>
             <div className="prose max-w-none">
               {battle.intro.split('\n\n').map((para, i) => (
                 <p key={i} className="leading-relaxed mb-4 text-base" style={{ color: '#c8b08a', fontFamily: 'Georgia, serif' }}>
