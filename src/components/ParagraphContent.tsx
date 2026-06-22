@@ -94,13 +94,39 @@ export default function ParagraphContent({ content, circleSlug }: ParagraphConte
 
         const parts = parseContent(paragraph, circleSlug)
 
+        const isFirst = pIdx === 0
+        const firstPart = isFirst && parts.length > 0 ? parts[0] : null
+        const dropCapLetter = isFirst && firstPart?.type === 'text' && firstPart.content.length > 0
+          ? firstPart.content[0]
+          : null
+        const firstPartRest = dropCapLetter !== null && firstPart
+          ? { ...firstPart, content: firstPart.content.slice(1) }
+          : null
+
         return (
           <p
             key={pIdx}
             className="leading-relaxed"
             style={{ color: '#e8d5b0', fontSize: '1.05rem', lineHeight: '1.75' }}
           >
-            {parts.map((part, partIdx) => {
+            {dropCapLetter && (
+              <span
+                style={{
+                  float: 'left',
+                  fontSize: '4.2rem',
+                  lineHeight: '0.8',
+                  marginRight: '0.1em',
+                  marginTop: '0.05em',
+                  fontFamily: 'Georgia, serif',
+                  color: '#c9a87a',
+                  fontWeight: 'bold',
+                }}
+              >
+                {dropCapLetter}
+              </span>
+            )}
+            {(dropCapLetter ? [firstPartRest!, ...parts.slice(1)] : parts).map((part, partIdx) => {
+              if (!part) return null
               if (part.type === 'link' && part.target) {
                 return (
                   <Link
