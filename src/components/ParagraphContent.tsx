@@ -112,7 +112,6 @@ export default function ParagraphContent({ content, circleSlug }: ParagraphConte
             className="leading-relaxed"
             style={{ color: '#e8d5b0', fontSize: '1.05rem', lineHeight: '1.75' }}
           >
-            {dropCapPrefix && <span>{dropCapPrefix}</span>}
             {dropCapLetter && (
               <span
                 style={{
@@ -126,7 +125,7 @@ export default function ParagraphContent({ content, circleSlug }: ParagraphConte
                   fontWeight: 'bold',
                 }}
               >
-                {dropCapLetter}
+                {dropCapPrefix}{dropCapLetter}
               </span>
             )}
             {(dropCapLetter ? [firstPartRest!, ...parts.slice(1)] : parts).map((part, partIdx) => {
