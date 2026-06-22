@@ -218,7 +218,7 @@ export default function ParagraphPage({ params }: PageProps) {
         {/* Title */}
         {paragraph.title && (
           <h1
-            className="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-8"
+            className="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-8 text-center"
             style={{
               color: accentColor,
               fontFamily: 'Georgia, serif',
