@@ -660,7 +660,7 @@ export default function SelectPage() {
         {/* Prologue button */}
         <audio
           ref={audioRef}
-          src="/audio/prologo.mp3"
+          src="https://github.com/JVillacorta42/dante-app/releases/download/v1.0/prologo.mp3"
           onEnded={() => setProloguePlaying(false)}
         />
         <button

@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useAudio } from '@/lib/AudioContext'
 
 const TRACKS = [
-  { id: 1, name: 'Battle I',   src: '/battle/Battle1.mp3' },
-  { id: 2, name: 'Battle II',  src: '/battle/Battle2.mp3' },
-  { id: 3, name: 'Battle III', src: '/battle/Battle3.mp3' },
-  { id: 4, name: 'Battle IV',  src: '/battle/Battle4.mp3' },
-  { id: 5, name: 'Battle V',   src: '/battle/Battle5.mp3' },
+  { id: 1, name: 'Battle I',   src: 'https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Battle1.mp3' },
+  { id: 2, name: 'Battle II',  src: 'https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Battle2.mp3' },
+  { id: 3, name: 'Battle III', src: 'https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Battle3.mp3' },
+  { id: 4, name: 'Battle IV',  src: 'https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Battle4.mp3' },
+  { id: 5, name: 'Battle V',   src: 'https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Battle5.mp3' },
 ]
 
 const FADE_MS = 3000
