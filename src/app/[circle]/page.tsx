@@ -111,7 +111,7 @@ export default function CirclePage({ params }: PageProps) {
         className="fixed inset-0 w-full h-full object-cover pointer-events-none"
         style={{ zIndex: 0 }}
       >
-        <source src="https://github.com/JVillacorta42/dante-app/releases/download/v1.0/bg.mp4" type="video/mp4" />
+        <source src="https://github.com/JVillacorta42/dante-app/releases/download/1.0/bg.mp4" type="video/mp4" />
       </video>
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1, backgroundColor: 'rgba(13,10,8,0.72)' }} />
       {/* Content */}

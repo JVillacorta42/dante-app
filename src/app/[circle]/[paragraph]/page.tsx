@@ -105,7 +105,7 @@ export default function ParagraphPage({ params }: PageProps) {
         className="fixed inset-0 w-full h-full object-cover pointer-events-none"
         style={{ zIndex: 0 }}
       >
-        <source src="https://github.com/JVillacorta42/dante-app/releases/download/v1.0/bg.mp4" type="video/mp4" />
+        <source src="https://github.com/JVillacorta42/dante-app/releases/download/1.0/bg.mp4" type="video/mp4" />
       </video>
       {/* Semi-transparent dark overlay */}
       <div

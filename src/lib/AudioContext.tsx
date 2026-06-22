@@ -32,7 +32,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const [volume, setVolumeState] = useState(0.35)
 
   useEffect(() => {
-    const audio = new Audio('https://github.com/JVillacorta42/dante-app/releases/download/v1.0/Ambiente.mp3')
+    const audio = new Audio('https://github.com/JVillacorta42/dante-app/releases/download/1.0/Ambiente.mp3')
     audio.loop = true
     audio.volume = 0.35
     audioRef.current = audio
