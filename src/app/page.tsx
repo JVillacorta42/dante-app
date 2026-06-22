@@ -85,6 +85,8 @@ export default function PortadaPage() {
 
         <button
           onClick={() => {
+            const el = document.documentElement
+            if (el.requestFullscreen) el.requestFullscreen().catch(() => {})
             const sfx = new Audio('https://github.com/JVillacorta42/dante-app/releases/download/1.0/boton_portada.mp3')
             sfx.volume = 0.1
             // Duck music while sfx plays
