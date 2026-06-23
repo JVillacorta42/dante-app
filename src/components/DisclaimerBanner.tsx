@@ -98,6 +98,19 @@ export default function DisclaimerBanner() {
             >
               wearecgs.com/dante ↗
             </a>
+            <div className="mt-4 pt-4" style={{ borderTop: '1px solid #2d1408' }}>
+              <p className="text-xs mb-1" style={{ color: '#6b5a3a' }}>Fan app developed by</p>
+              <p className="text-sm font-bold" style={{ color: '#e8d5b0', fontFamily: 'Georgia, serif' }}>
+                Javier García
+              </p>
+              <a
+                href="mailto:Javicnpmadrid@gmail.com"
+                className="text-xs hover:underline"
+                style={{ color: '#9e8a6a' }}
+              >
+                Javicnpmadrid@gmail.com
+              </a>
+            </div>
           </div>
         </div>
 
