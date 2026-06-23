@@ -132,19 +132,17 @@ function Die({ state, colorKey }: { state: DieState; colorKey: ColorKey }) {
 }
 
 function resultSummary(dice: DieState[]) {
-  let bursts1 = 0, bursts2 = 0, skulls = 0
+  let totalBursts = 0, totalSkulls = 0
   for (const d of dice) {
-    const faces = buildFaces('red') // type only, color irrelevant
-    const t = faces[d.faceIndex].type
-    if (t === 'burst1') bursts1++
-    else if (t === 'burst2') bursts2++
-    else skulls++
+    const t = ['burst1','burst2','burst1','burst2','skull','skull'][d.faceIndex]
+    if (t === 'burst1') totalBursts += 1
+    else if (t === 'burst2') totalBursts += 2
+    else totalSkulls += 1
   }
   const parts = []
-  if (bursts1 > 0) parts.push(`${bursts1}× ✸`)
-  if (bursts2 > 0) parts.push(`${bursts2}× ✸✸`)
-  if (skulls > 0) parts.push(`${skulls}× ☠`)
-  return parts.join('  ')
+  if (totalBursts > 0) parts.push(`✸ ×${totalBursts}`)
+  if (totalSkulls > 0) parts.push(`☠ ×${totalSkulls}`)
+  return parts.join('    ')
 }
 
 export default function DiceRoller() {
@@ -301,7 +299,7 @@ export default function DiceRoller() {
                 {diceCount} {diceCount === 1 ? 'dado' : 'dados'}
               </span>
               <button
-                onClick={() => setDiceCount(Math.min(10, diceCount + 1))}
+                onClick={() => setDiceCount(Math.min(15, diceCount + 1))}
                 disabled={rolling}
                 className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-colors hover:bg-white/10"
                 style={{ color: '#e8d5b0', border: '1px solid #3a2010' }}
