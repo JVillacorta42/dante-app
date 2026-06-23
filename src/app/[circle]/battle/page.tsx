@@ -104,6 +104,7 @@ export default function BattlePage({ params }: PageProps) {
       {/* Background video */}
       <video
         autoPlay loop muted playsInline
+        onEnded={(e) => { e.currentTarget.currentTime = 0; e.currentTarget.play().catch(() => {}) }}
         className="fixed inset-0 w-full h-full object-cover pointer-events-none"
         style={{ zIndex: 0 }}
       >
