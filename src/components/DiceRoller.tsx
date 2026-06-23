@@ -27,46 +27,54 @@ function DoubleBurstSVG() {
 }
 
 // HeroQuest-style skull SVG
-function SkullSVG() {
+function SkullSVG({ eyeColor }: { eyeColor: string }) {
   return (
     <svg viewBox="0 0 100 110" width="52" height="52" fill="white">
-      {/* Cranium */}
       <ellipse cx="50" cy="44" rx="36" ry="34" fill="white" />
-      {/* Eye sockets */}
-      <ellipse cx="36" cy="44" rx="12" ry="14" fill="#b91c1c" />
-      <ellipse cx="64" cy="44" rx="12" ry="14" fill="#b91c1c" />
-      {/* Nose */}
-      <polygon points="47,61 53,61 50,68" fill="#b91c1c" />
-      {/* Jaw */}
+      <ellipse cx="36" cy="44" rx="12" ry="14" fill={eyeColor} />
+      <ellipse cx="64" cy="44" rx="12" ry="14" fill={eyeColor} />
+      <polygon points="47,61 53,61 50,68" fill={eyeColor} />
       <rect x="24" y="70" width="52" height="22" rx="7" fill="white" />
-      {/* Teeth gaps */}
-      <rect x="24" y="70" width="2" height="22" rx="1" fill="#b91c1c" />
-      <line x1="38" y1="70" x2="38" y2="92" stroke="#b91c1c" strokeWidth="3.5" />
-      <line x1="50" y1="70" x2="50" y2="92" stroke="#b91c1c" strokeWidth="3.5" />
-      <line x1="62" y1="70" x2="62" y2="92" stroke="#b91c1c" strokeWidth="3.5" />
-      <rect x="74" y="70" width="2" height="22" rx="1" fill="#b91c1c" />
+      <rect x="24" y="70" width="2" height="22" rx="1" fill={eyeColor} />
+      <line x1="38" y1="70" x2="38" y2="92" stroke={eyeColor} strokeWidth="3.5" />
+      <line x1="50" y1="70" x2="50" y2="92" stroke={eyeColor} strokeWidth="3.5" />
+      <line x1="62" y1="70" x2="62" y2="92" stroke={eyeColor} strokeWidth="3.5" />
+      <rect x="74" y="70" width="2" height="22" rx="1" fill={eyeColor} />
     </svg>
   )
 }
 
-// Face content
-const FACES = [
-  { type: 'burst1', icon: <BurstSVG /> },
-  { type: 'burst2', icon: <DoubleBurstSVG /> },
-  { type: 'burst1', icon: <BurstSVG /> },
-  { type: 'burst2', icon: <DoubleBurstSVG /> },
-  { type: 'skull', icon: <SkullSVG /> },
-  { type: 'skull', icon: <SkullSVG /> },
-]
+const COLORS = {
+  red:    { label: 'Rojo',    base: '185,28,28',   dark: '127,29,29',  hex: '#b91c1c' },
+  blue:   { label: 'Azul',   base: '29,78,216',    dark: '30,58,138',  hex: '#1d4ed8' },
+  green:  { label: 'Verde',  base: '21,128,61',    dark: '20,83,45',   hex: '#15803d' },
+  purple: { label: 'Morado', base: '124,58,237',   dark: '76,29,149',  hex: '#7c3aed' },
+  yellow: { label: 'Amarillo', base: '202,138,4',  dark: '120,83,0',   hex: '#ca8a04' },
+} as const
+
+type ColorKey = keyof typeof COLORS
+
+// Face content — skull needs color so we build faces dynamically
+function buildFaces(colorKey: ColorKey) {
+  const eyeColor = COLORS[colorKey].hex
+  return [
+    { type: 'burst1', icon: <BurstSVG /> },
+    { type: 'burst2', icon: <DoubleBurstSVG /> },
+    { type: 'burst1', icon: <BurstSVG /> },
+    { type: 'burst2', icon: <DoubleBurstSVG /> },
+    { type: 'skull',  icon: <SkullSVG eyeColor={eyeColor} /> },
+    { type: 'skull',  icon: <SkullSVG eyeColor={eyeColor} /> },
+  ]
+}
 
 // Final rotation to show each face facing the viewer
 const FACE_ROTATIONS = [
-  { x: 0, y: 0 },      // front → 1 burst
-  { x: 0, y: 180 },    // back → 2 bursts
-  { x: 0, y: -90 },   // right → 1 burst
-  { x: 0, y: 90 },    // left → 2 bursts
-  { x: 90, y: 0 },    // top → skull
-  { x: -90, y: 0 },   // bottom → skull
+  { x: 0, y: 0 },
+  { x: 0, y: 180 },
+  { x: 0, y: -90 },
+  { x: 0, y: 90 },
+  { x: 90, y: 0 },
+  { x: -90, y: 0 },
 ]
 
 const FACE_SIZE = 70
@@ -79,22 +87,28 @@ interface DieState {
   transition: boolean
 }
 
-function Die({ state }: { state: DieState }) {
+function Die({ state, colorKey }: { state: DieState; colorKey: ColorKey }) {
+  const { base, dark } = COLORS[colorKey]
   const transform = `rotateX(${state.rotX}deg) rotateY(${state.rotY}deg)`
+  const half = FACE_SIZE / 2
+
   const faceStyle: React.CSSProperties = {
     position: 'absolute',
     width: FACE_SIZE,
     height: FACE_SIZE,
-    backgroundColor: '#b91c1c',
-    border: '2px solid #7f1d1d',
-    borderRadius: 6,
+    background: `linear-gradient(135deg, rgba(255,255,255,0.28) 0%, rgba(${base},0.55) 45%, rgba(${base},0.7) 100%)`,
+    border: `1.5px solid rgba(255,255,255,0.35)`,
+    borderRadius: 8,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backfaceVisibility: 'hidden',
-    boxShadow: 'inset 0 0 12px rgba(0,0,0,0.4)',
+    backdropFilter: 'blur(6px)',
+    WebkitBackdropFilter: 'blur(6px)',
+    boxShadow: `inset 0 1px 8px rgba(255,255,255,0.2), inset 0 -4px 10px rgba(${dark},0.5)`,
   }
-  const half = FACE_SIZE / 2
+
+  const faces = buildFaces(colorKey)
 
   return (
     <div
@@ -107,18 +121,12 @@ function Die({ state }: { state: DieState }) {
         transition: state.transition ? 'transform 1.4s cubic-bezier(0.15, 0.85, 0.3, 1)' : 'none',
       }}
     >
-      {/* Front */}
-      <div style={{ ...faceStyle, transform: `translateZ(${half}px)` }}>{FACES[0].icon}</div>
-      {/* Back */}
-      <div style={{ ...faceStyle, transform: `rotateY(180deg) translateZ(${half}px)` }}>{FACES[1].icon}</div>
-      {/* Right */}
-      <div style={{ ...faceStyle, transform: `rotateY(90deg) translateZ(${half}px)` }}>{FACES[2].icon}</div>
-      {/* Left */}
-      <div style={{ ...faceStyle, transform: `rotateY(-90deg) translateZ(${half}px)` }}>{FACES[3].icon}</div>
-      {/* Top */}
-      <div style={{ ...faceStyle, transform: `rotateX(90deg) translateZ(${half}px)` }}>{FACES[4].icon}</div>
-      {/* Bottom */}
-      <div style={{ ...faceStyle, transform: `rotateX(-90deg) translateZ(${half}px)` }}>{FACES[5].icon}</div>
+      <div style={{ ...faceStyle, transform: `translateZ(${half}px)` }}>{faces[0].icon}</div>
+      <div style={{ ...faceStyle, transform: `rotateY(180deg) translateZ(${half}px)` }}>{faces[1].icon}</div>
+      <div style={{ ...faceStyle, transform: `rotateY(90deg) translateZ(${half}px)` }}>{faces[2].icon}</div>
+      <div style={{ ...faceStyle, transform: `rotateY(-90deg) translateZ(${half}px)` }}>{faces[3].icon}</div>
+      <div style={{ ...faceStyle, transform: `rotateX(90deg) translateZ(${half}px)` }}>{faces[4].icon}</div>
+      <div style={{ ...faceStyle, transform: `rotateX(-90deg) translateZ(${half}px)` }}>{faces[5].icon}</div>
     </div>
   )
 }
@@ -126,7 +134,8 @@ function Die({ state }: { state: DieState }) {
 function resultSummary(dice: DieState[]) {
   let bursts1 = 0, bursts2 = 0, skulls = 0
   for (const d of dice) {
-    const t = FACES[d.faceIndex].type
+    const faces = buildFaces('red') // type only, color irrelevant
+    const t = faces[d.faceIndex].type
     if (t === 'burst1') bursts1++
     else if (t === 'burst2') bursts2++
     else skulls++
@@ -144,9 +153,11 @@ export default function DiceRoller() {
   const [dice, setDice] = useState<DieState[]>([])
   const [rolling, setRolling] = useState(false)
   const [showResult, setShowResult] = useState(false)
+  const [colorKey, setColorKey] = useState<ColorKey>('red')
   const rollRef = useRef(0)
 
-  // Initialize dice when count changes
+  const color = COLORS[colorKey]
+
   useEffect(() => {
     setDice(
       Array.from({ length: diceCount }, (_, i) => ({
@@ -166,10 +177,8 @@ export default function DiceRoller() {
     setShowResult(false)
     const rollId = ++rollRef.current
 
-    // Pick results
     const results = Array.from({ length: diceCount }, () => Math.floor(Math.random() * 6))
 
-    // Phase 1: jump to random spin position (no transition)
     setDice(
       Array.from({ length: diceCount }, (_, i) => ({
         id: i,
@@ -180,7 +189,6 @@ export default function DiceRoller() {
       }))
     )
 
-    // Phase 2: transition to final position
     setTimeout(() => {
       if (rollRef.current !== rollId) return
       setDice(
@@ -189,17 +197,9 @@ export default function DiceRoller() {
           const { x, y } = FACE_ROTATIONS[fi]
           const spinX = Math.floor(Math.random() * 2 + 1) * 360
           const spinY = Math.floor(Math.random() * 2 + 1) * 360
-          return {
-            id: i,
-            faceIndex: fi,
-            rotX: x + spinX,
-            rotY: y + spinY,
-            transition: true,
-          }
+          return { id: i, faceIndex: fi, rotX: x + spinX, rotY: y + spinY, transition: true }
         })
       )
-
-      // Show result after transition
       setTimeout(() => {
         if (rollRef.current !== rollId) return
         setShowResult(true)
@@ -217,11 +217,12 @@ export default function DiceRoller() {
         style={{
           width: 44,
           height: 44,
-          backgroundColor: '#b91c1c',
-          border: '2px solid #7f1d1d',
-          boxShadow: '0 0 16px #b91c1c55, 0 2px 8px #00000088',
+          background: `rgba(${color.base},0.7)`,
+          border: `2px solid rgba(255,255,255,0.25)`,
+          boxShadow: `0 0 16px rgba(${color.base},0.5), 0 2px 8px #00000088`,
           color: 'white',
           fontSize: '1.3rem',
+          backdropFilter: 'blur(4px)',
         }}
         title="Tirar dados"
       >
@@ -239,8 +240,8 @@ export default function DiceRoller() {
             className="rounded-xl p-6 flex flex-col items-center gap-5"
             style={{
               backgroundColor: '#1a0a0a',
-              border: '1px solid #7f1d1d',
-              boxShadow: '0 0 60px #b91c1c33',
+              border: `1px solid rgba(${color.base},0.5)`,
+              boxShadow: `0 0 60px rgba(${color.base},0.2)`,
               minWidth: 320,
               maxWidth: '90vw',
             }}
@@ -260,6 +261,30 @@ export default function DiceRoller() {
               >
                 ✕
               </button>
+            </div>
+
+            {/* Color selector */}
+            <div className="flex items-center gap-2">
+              {(Object.keys(COLORS) as ColorKey[]).map((k) => (
+                <button
+                  key={k}
+                  onClick={() => setColorKey(k)}
+                  title={COLORS[k].label}
+                  style={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '50%',
+                    background: `rgba(${COLORS[k].base},0.75)`,
+                    border: k === colorKey
+                      ? '2px solid rgba(255,255,255,0.9)'
+                      : '2px solid rgba(255,255,255,0.2)',
+                    boxShadow: k === colorKey ? `0 0 8px rgba(${COLORS[k].base},0.9)` : 'none',
+                    transition: 'all 0.15s',
+                    cursor: 'pointer',
+                    flexShrink: 0,
+                  }}
+                />
+              ))}
             </div>
 
             {/* Dice count selector */}
@@ -297,7 +322,7 @@ export default function DiceRoller() {
                 }}
               >
                 {dice.map((d) => (
-                  <Die key={d.id} state={d} />
+                  <Die key={d.id} state={d} colorKey={colorKey} />
                 ))}
               </div>
             )}
@@ -322,11 +347,13 @@ export default function DiceRoller() {
               disabled={rolling}
               className="px-8 py-3 rounded-full uppercase tracking-widest text-sm font-bold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
-                backgroundColor: rolling ? '#7f1d1d' : '#b91c1c',
+                background: rolling
+                  ? `rgba(${color.dark},0.8)`
+                  : `rgba(${color.base},0.85)`,
                 color: 'white',
-                border: '1px solid #991b1b',
+                border: `1px solid rgba(255,255,255,0.2)`,
                 letterSpacing: '0.25em',
-                boxShadow: rolling ? 'none' : '0 0 20px #b91c1c66',
+                boxShadow: rolling ? 'none' : `0 0 20px rgba(${color.base},0.5)`,
                 opacity: rolling ? 0.7 : 1,
               }}
             >
