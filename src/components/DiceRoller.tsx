@@ -14,10 +14,12 @@ function BurstSVG() {
 function DoubleBurstSVG() {
   return (
     <svg viewBox="0 0 100 100" width="54" height="54" fill="white">
-      <g transform="translate(-18,0) scale(0.65)">
+      {/* top-left */}
+      <g transform="translate(-8,-8) scale(0.6)">
         <path d="M50,8 L57,38 L82,20 L67,46 L95,50 L67,54 L82,80 L57,62 L50,92 L43,62 L18,80 L33,54 L5,50 L33,46 L18,20 L43,38 Z" />
       </g>
-      <g transform="translate(18,0) scale(0.65)">
+      {/* bottom-right */}
+      <g transform="translate(28,28) scale(0.6)">
         <path d="M50,8 L57,38 L82,20 L67,46 L95,50 L67,54 L82,80 L57,62 L50,92 L43,62 L18,80 L33,54 L5,50 L33,46 L18,20 L43,38 Z" />
       </g>
     </svg>
