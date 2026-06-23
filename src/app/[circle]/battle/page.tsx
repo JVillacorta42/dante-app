@@ -17,7 +17,17 @@ export default function BattlePage({ params }: PageProps) {
   const [expandedScenes, setExpandedScenes] = useState<Set<string>>(new Set())
   const [narrating, setNarrating] = useState(false)
   const narratorRef = useRef<HTMLAudioElement | null>(null)
+  const bgVideoRef = useRef<HTMLVideoElement>(null)
   const { duckRef } = useAudio()
+
+  useEffect(() => {
+    const v = bgVideoRef.current
+    if (!v) return
+    const id = setInterval(() => {
+      if (v.paused || v.ended) { v.currentTime = 0; v.play().catch(() => {}) }
+    }, 1000)
+    return () => clearInterval(id)
+  }, [])
 
   function toggleNarration() {
     const audio = narratorRef.current
@@ -103,8 +113,8 @@ export default function BattlePage({ params }: PageProps) {
       <style>{`body { background-color: transparent !important; }`}</style>
       {/* Background video */}
       <video
+        ref={bgVideoRef}
         autoPlay loop muted playsInline
-        onTimeUpdate={(e) => { const v = e.currentTarget; if (v.duration && v.currentTime > v.duration - 0.3) v.currentTime = 0 }}
         className="fixed inset-0 w-full h-full object-cover pointer-events-none"
         style={{ zIndex: 0 }}
       >
