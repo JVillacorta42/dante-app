@@ -23,10 +23,15 @@ export default function BattlePage({ params }: PageProps) {
   useEffect(() => {
     const v = bgVideoRef.current
     if (!v) return
-    const id = setInterval(() => {
-      if (v.paused || v.ended) { v.currentTime = 0; v.play().catch(() => {}) }
-    }, 1000)
-    return () => clearInterval(id)
+    let dur = 0
+    const onDuration = () => { if (!isNaN(v.duration) && v.duration > 0) dur = v.duration }
+    const onTime = () => { if (dur > 0 && v.currentTime > dur - 0.5) v.currentTime = 0 }
+    v.addEventListener('durationchange', onDuration)
+    v.addEventListener('timeupdate', onTime)
+    return () => {
+      v.removeEventListener('durationchange', onDuration)
+      v.removeEventListener('timeupdate', onTime)
+    }
   }, [])
 
   function toggleNarration() {
