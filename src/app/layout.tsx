@@ -3,6 +3,7 @@ import './globals.css'
 import MusicPlayer from '@/components/MusicPlayer'
 import FullscreenButton from '@/components/FullscreenButton'
 import DiceRoller from '@/components/DiceRoller'
+import DisclaimerBanner from '@/components/DisclaimerBanner'
 import { AudioProvider } from '@/lib/AudioContext'
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default function RootLayout({
         }}
       >
         <AudioProvider>
+          <DisclaimerBanner />
           {/* Persistent music player — fixed bottom-right */}
           <div className="ambient-player fixed bottom-4 right-4 z-50 flex items-center gap-2">
             <FullscreenButton />
