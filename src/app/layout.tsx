@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import MusicPlayer from '@/components/MusicPlayer'
 import FullscreenButton from '@/components/FullscreenButton'
+import DiceRoller from '@/components/DiceRoller'
 import { AudioProvider } from '@/lib/AudioContext'
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default function RootLayout({
             <FullscreenButton />
             <MusicPlayer />
           </div>
+          <DiceRoller />
           {children}
         </AudioProvider>
       </body>
