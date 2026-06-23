@@ -22,15 +22,10 @@ export default function ExtraBattlePage({ params }: PageProps) {
   useEffect(() => {
     const v = bgVideoRef.current
     if (!v) return
-    let dur = 0
-    const onDuration = () => { if (!isNaN(v.duration) && v.duration > 0) dur = v.duration }
-    const onTime = () => { if (dur > 0 && v.currentTime > dur - 0.5) v.currentTime = 0 }
-    v.addEventListener('durationchange', onDuration)
-    v.addEventListener('timeupdate', onTime)
-    return () => {
-      v.removeEventListener('durationchange', onDuration)
-      v.removeEventListener('timeupdate', onTime)
-    }
+    v.muted = true
+    const onEnded = () => { v.muted = true; v.currentTime = 0; v.play().catch(() => {}) }
+    v.addEventListener('ended', onEnded)
+    return () => v.removeEventListener('ended', onEnded)
   }, [])
 
   function toggleNarration() {
