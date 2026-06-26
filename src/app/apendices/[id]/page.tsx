@@ -48,7 +48,7 @@ export default function ApendiceEntryPage({ params }: PageProps) {
     } else {
       audio.play().then(() => {
         setNarrating(true)
-        duckRef.current?.(0.15, 1200)
+        duckRef.current?.(0.40, 1200)
       }).catch(() => {})
     }
   }
