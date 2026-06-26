@@ -1,8 +1,9 @@
 'use client'
 
-import { use } from 'react'
+import { use, useRef, useState } from 'react'
 import Link from 'next/link'
 import apendicesData from '@/data/apendices_data.json'
+import { useAudio } from '@/lib/AudioContext'
 
 const CIRCLE_COLORS: Record<string, string> = {
   I:    '#c9a84c',
@@ -16,6 +17,9 @@ const CIRCLE_COLORS: Record<string, string> = {
   IX:   '#1a2a4a',
 }
 
+// Entries without audio (skipped due to quota)
+const NO_AUDIO = new Set(['VI:I'])
+
 interface PageProps {
   params: Promise<{ id: string }>
 }
@@ -24,9 +28,35 @@ export default function ApendiceEntryPage({ params }: PageProps) {
   const { id: slug } = use(params)
   const entryId = slug.replace('-', ':')
   const entry = apendicesData.entries.find((e) => e.id === entryId)
+  const [narrating, setNarrating] = useState(false)
+  const narratorRef = useRef<HTMLAudioElement | null>(null)
+  const { duckRef } = useAudio()
 
   const circle = entryId.split(':')[0]
   const color = CIRCLE_COLORS[circle] ?? '#c9a84c'
+  const hasAudio = !NO_AUDIO.has(entryId)
+  const audioSrc = `https://github.com/JVillacorta42/dante-app/releases/download/1.0/apendice_${slug}.mp3`
+
+  function toggleNarration() {
+    const audio = narratorRef.current
+    if (!audio) return
+    if (narrating) {
+      audio.pause()
+      audio.currentTime = 0
+      setNarrating(false)
+      duckRef.current?.(1, 1200)
+    } else {
+      audio.play().then(() => {
+        setNarrating(true)
+        duckRef.current?.(0.15, 1200)
+      }).catch(() => {})
+    }
+  }
+
+  function handleNarrationEnd() {
+    setNarrating(false)
+    duckRef.current?.(1, 1200)
+  }
 
   if (!entry) {
     return (
@@ -64,22 +94,38 @@ export default function ApendiceEntryPage({ params }: PageProps) {
           {/* Entry ID */}
           <div
             className="text-5xl font-bold text-center mb-4"
-            style={{
-              color,
-              fontFamily: 'Georgia, serif',
-              textShadow: `0 0 30px ${color}66`,
-            }}
+            style={{ color, fontFamily: 'Georgia, serif', textShadow: `0 0 30px ${color}66` }}
           >
             {entry.id}
           </div>
 
           {/* Title */}
           <h1
-            className="text-2xl uppercase text-center tracking-widest mb-12"
+            className="text-2xl uppercase text-center tracking-widest mb-8"
             style={{ color: '#e8d5b0', letterSpacing: '0.25em' }}
           >
             {entry.title}
           </h1>
+
+          {/* Narration button */}
+          {hasAudio && (
+            <div className="flex justify-center mb-10">
+              <audio ref={narratorRef} src={audioSrc} onEnded={handleNarrationEnd} />
+              <button
+                onClick={toggleNarration}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105"
+                style={{
+                  backgroundColor: narrating ? '#1a0808' : 'transparent',
+                  border: `1px solid ${narrating ? color : '#3a1a0a'}`,
+                  color: narrating ? color : '#9e8a6a',
+                  letterSpacing: '0.2em',
+                  boxShadow: narrating ? `0 0 16px ${color}33` : 'none',
+                }}
+              >
+                {narrating ? '■ Detener narración' : '▶ Escuchar narración'}
+              </button>
+            </div>
+          )}
 
           {/* Divider */}
           <div
@@ -106,11 +152,7 @@ export default function ApendiceEntryPage({ params }: PageProps) {
 
           {/* Bottom nav */}
           <div className="mt-16 text-center">
-            <Link
-              href="/apendices"
-              className="text-sm hover:underline"
-              style={{ color: '#6b5a3a' }}
-            >
+            <Link href="/apendices" className="text-sm hover:underline" style={{ color: '#6b5a3a' }}>
               ← Volver a Apéndices
             </Link>
           </div>
